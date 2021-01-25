@@ -9,10 +9,10 @@
  * 
  */
 
- /**
-  * TODO: Switch from using strava-v3 to using actual api calls to strava directly (so we can pass auth token on calls)
-  * 
-  */
+/**
+ * TODO: Switch from using strava-v3 to using actual api calls to strava directly (so we can pass auth token on calls)
+ * 
+ */
 const express = require('express');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
@@ -69,7 +69,7 @@ app.get('/athletes/:id/mile_time_avg', (req, res) => {
 
 app.post('/auth/token', (req, res) => {
     if (req.body.code)
-        axios.post(`https://www.strava.com/oauth/token?client_id=44502&client_secret=${process.env.STRAVA_CLIENT_SECRET}&code=${req.body.code}&grant_type=authorization_code`)
+        axios.post(`https://www.strava.com/oauth/token?client_id=${process.env.STRAVA_CLIENT_ID}&client_secret=${process.env.STRAVA_CLIENT_SECRET}&code=${req.body.code}&grant_type=${req.body.grant_type}`)
             .then(response => {
                 console.log(response.data)
                 res.status(200).send(response.data)
