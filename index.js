@@ -67,6 +67,7 @@ app.get('/athletes/:id/mile_time_avg', (req, res) => {
         .catch(err => res.status(err.statusCode).send(err.message))
 });
 
+// request auth token from strava
 app.post('/auth/token', (req, res) => {
     if (req.body.code)
         axios.post(`https://www.strava.com/oauth/token?client_id=${process.env.STRAVA_CLIENT_ID}&client_secret=${process.env.STRAVA_CLIENT_SECRET}&code=${req.body.code}&grant_type=${req.body.grant_type}`)
