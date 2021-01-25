@@ -9,10 +9,6 @@
  * 
  */
 
-/**
- * TODO: Switch from using strava-v3 to using actual api calls to strava directly (so we can pass auth token on calls)
- * 
- */
 const express = require('express');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
@@ -56,13 +52,13 @@ app.get('/athletes/:id/stats', (req, res) => {
 });
 
 // get athlete stats by id
-app.get('/athletes/:id/mile_time_avg', (req, res) => {
+app.get('/athletes/:id/avgmile', (req, res) => {
     strava.athletes.stats({ id: req.params.id, access_token: req.query.token })
-        .then(val => {
+        .then(stats => {
             const avgTotal = (stats.all_run_totals.moving_time / 60) / (stats.all_run_totals.distance / 1609.344);
             const ytdTotal = (stats.ytd_run_totals.moving_time / 60) / (stats.ytd_run_totals.distance / 1609.344);
             const recentTotal = (stats.recent_run_totals.moving_time / 60) / (stats.recent_run_totals.distance / 1609.344);
-            res.status(200).send({ all_mile_time_avg: avgTotal.toFixed(2), ytd_mile_time_avg: ytdTotal.toFixed(2), recent_mile_time_avg: recentTotal.toFixed(2) });
+            res.status(200).send({ avg: avgTotal, ytd: ytdTotal, recent: recentTotal });
         })
         .catch(err => res.status(err.statusCode).send(err.message))
 });
