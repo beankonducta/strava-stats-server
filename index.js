@@ -52,7 +52,7 @@ app.get('/athletes/:id/stats', (req, res) => {
 });
 
 // get athlete stats by id
-app.get('/athletes/:id/avgmile', (req, res) => {
+app.get('/athletes/:id/avg_mile_time', (req, res) => {
     strava.athletes.stats({ id: req.params.id, access_token: req.query.token })
         .then(stats => {
             const avgTotal = (stats.all_run_totals.moving_time / 60) / (stats.all_run_totals.distance / 1609.344);
