@@ -11,14 +11,14 @@
 
 const express = require('express');
 const dotenv = require('dotenv').config();
-const cors = require('cors');
+const cors = require('cors')
 const stravaApi = require('strava-v3')
 
 const axios = require('axios')
 
 const strava = new stravaApi.client();
 
-const app = express();
+const app = express()
 
 app.use(cors())
 app.use(express.json())

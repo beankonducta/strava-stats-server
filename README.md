@@ -1,11 +1,15 @@
-For now you need to manually generate an auth token to place inside your .env file. You can do so with these instructions:
+# Strava Stats Server
 
-https://stackoverflow.com/a/52888659
+This is a server which pulls data from Strava's API.
 
-Then clone the repo and run:
+## Running Locally
 
-npm install
+Create .env file with the following values from your Strava app page:
 
-node index.js
+STRAVA_ACCESS_TOKEN=xxxxxx
+STRAVA_CLIENT_SECRET=xxxxxx
+STRAVA_CLIENT_ID=xxxxxx
 
-Done!
+Install dependencies with `npm install`.
+
+Run `node index.js`.
