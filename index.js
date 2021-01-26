@@ -75,7 +75,6 @@ app.post('/auth/token', (req, res) => {
     if (req.body.code)
         axios.post(`https://www.strava.com/oauth/token?client_id=${process.env.STRAVA_CLIENT_ID}&client_secret=${process.env.STRAVA_CLIENT_SECRET}&code=${req.body.code}&grant_type=${req.body.grant_type}`)
             .then(response => {
-                console.log(response.data)
                 res.status(200).send(response.data)
             })
             .catch(err => res.status(500).send('error!'));
